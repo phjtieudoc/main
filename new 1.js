@@ -405,7 +405,7 @@ gt.defineTour( {
 } , {
                 //20
                 title: 'Bạn làm được rồi :)',
-                description: 'ĐÃ NHẬN ĐƯỢC CÔNG CỤ MỚI:  <b>Huy hiệu người định dạng</b><center>[[File:TWA badge 2.png|250px|link=]]</center><br>You\'re learning fast.  You\'re awesome.  We\'re just getting started but already you have the basic tools to go on an adventure. Keep an eye on the skill meter at the bottom of the page as you develop more and more strengths.<br>',
+                description: 'ĐÃ NHẬN ĐƯỢC CÔNG CỤ MỚI:  <b>Huy hiệu người định dạng</b><center>[[File:TWA badge 2.png|250px|link=]]</center><br>Bạn học nhanh đấy.  Thật tuyệt vời.  Ta chỉ vừa bắt đầu mà bạn đã có những công cụ cần thiết cho chuyến phiêu lưu này rồi. Hãy để mắt tới thanh đo kĩ năng ở phía dưới trang, có vẻ như bạn vừa phát triển thêm sức mạnh rồi.<br>',
                 overlay: true,
                 onShow: gt.parseDescription,
                 closeOnClickOutside: false,
