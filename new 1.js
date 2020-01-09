@@ -414,7 +414,7 @@ gt.defineTour( {
                         action: 'externalLink',
                         url: mw.util.getUrl( 'Special:MyPage' ) + '?tour=twa1&step=19&action=edit'          
                 } , {
-                        name: 'What\'s next??*',
+                        name: 'Tiếp theo là gì??*',
                         onclick: function()  {  if(!mw.config.get('wgUserName')){  alert( "Hãy đăng nhập." );   return;   } sendMessage( 'User:' + mw.config.get( 'wgUserName' ), 'Wikipedia:TWA/Badge/2template2' , mw.util.getUrl( 'Wikipedia:TWA/1/End' ) + '?tour=twa1&step=21'); } 
                 } ],
                 allowAutomaticOkay: false
