@@ -2,12 +2,12 @@
 	{
 		"id": "bgm",
 		"title": "Nhạc yên tĩnh",
-		"description": "Vintage soul tracks from the original 45 RPM vinyl.",
-		"dj": "Dion Watts Garcia",
-		"genre": "oldies",
+		"description": "Khúc nhạc giúp bạn bình tĩnh lại, tập trung việc học tập hơn.",
+		"dj": "Various Artist",
+		"genre": "bgm",
 		"image": "https://api.somafm.com/img/7soul120.png",
 		"largeimage": "https://api.somafm.com/logos/256/7soul256.png",
-		"xlimage": "https://api.somafm.com/logos/512/7soul512.png",
+		"xlimage": "https://github.com/phjtieudoc/Websitebuilding/raw/master/img/nhacyentinh.png",
 		"twitter": "",
 		"updated": "1396144686",
 		"playlists": [
