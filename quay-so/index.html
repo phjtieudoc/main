@@ -1,0 +1,284 @@
+<!--
+    Winhweel.js wheel of fortune example by Douglas McKechie @ www.dougtesting.net
+    See website for tutorials and other documentation.
+
+    The MIT License (MIT)
+
+    Copyright (c) 2016 Douglas McKechie
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+-->
+<html>
+    <head>
+        <title>Cộng đồng MLBB Nha Trang</title>
+        <link rel="stylesheet" href="main.css" type="text/css" />
+        <script type="text/javascript" src="../../Winwheel.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    </head>
+    <body>
+        <div align="center">
+            <h1>Chiếc nón kì diệu - Phần thưởng: Odette - Điệu Múa Phượng Hoàng</h1>
+            <p>Link groups tham gia: https://www.facebook.com/groups/MLBBNhaTrang/.</p>
+            <br />
+            <p>
+                Link trang web chứa code: http://phjtieudoc.github.io/main/quay-so
+            </p>
+            <br />
+            <p>Chọn một cài đặt nguồn sau đó nhấn nút Quay tay. Bạn sẽ được cảnh báo về giải thưởng giành được khi vòng quay dừng lại.</p>
+            <br />
+            <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <div class="power_controls">
+                        <br />
+                        <br />
+                        <table class="power" cellpadding="10" cellspacing="0">
+                            <tr>
+                                <th align="center">Tốc độ quay</th>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center" id="pw3" onClick="powerSelected(3);">Cao</td>
+                            </tr>
+                            <tr>
+                                <td align="center" id="pw2" onClick="powerSelected(2);">Trung bình</td>
+                            </tr>
+                            <tr>
+                                <td align="center" id="pw1" onClick="powerSelected(1);">Thấp</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" />
+                        <br /><br />
+                        &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Quay lại</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(đặt lại)
+                    </div>
+                </td>
+                <td width="438" height="582" class="the_wheel" align="center" valign="center">
+                    <canvas id="canvas" width="434" height="434">
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
+        <script>
+            // Create new wheel object specifying the parameters at creation time.
+            let theWheel = new Winwheel({
+                'outerRadius'     : 212,        // Set outer radius so wheel fits inside the background.
+                'innerRadius'     : 75,         // Make wheel hollow so segments don't go all way to center.
+                'textFontSize'    : 14,         // Set default font size for the segments.
+                'textOrientation' : 'vertical', // Make text vertial so goes down from the outside of wheel.
+                'textAlignment'   : 'outer',    // Align text to outside of wheel.
+                'numSegments'     : 62,         // Specify number of segments.
+                'segments'        :             // Define segments including colour and text.
+                [                               // font size and test colour overridden on backrupt segments.
+                   {'fillStyle' : '#ee1c24', 'text' : '141249329'},
+                   {'fillStyle' : '#3cb878', 'text' : '438013691'},
+                   {'fillStyle' : '#f6989d', 'text' : '478333600'},
+                   {'fillStyle' : '#00aef0', 'text' : '70260003'},
+                   {'fillStyle' : '#f26522', 'text' : '51435443'},
+                   {'fillStyle' : '#000000', 'text' : 'Quay 2 lần', 'textFontSize' : 12, 'textFillStyle' : '#ffffff'},
+                   {'fillStyle' : '#e70697', 'text' : '48591910'},
+                   {'fillStyle' : '#fff200', 'text' : '241265222'},
+                   {'fillStyle' : '#f6989d', 'text' : '357914999'},
+                   {'fillStyle' : '#ee1c24', 'text' : '13776130'},
+                   {'fillStyle' : '#3cb878', 'text' : '22021336'},
+                   {'fillStyle' : '#f26522', 'text' : '365353396'},
+                   {'fillStyle' : '#a186be', 'text' : '382461542'},
+                   {'fillStyle' : '#fff200', 'text' : '393403672'},
+                   {'fillStyle' : '#00aef0', 'text' : '511760150'},
+                   {'fillStyle' : '#ee1c24', 'text' : '432645604'},
+                   {'fillStyle' : '#f6989d', 'text' : '321418713'},
+                   {'fillStyle' : '#f26522', 'text' : '455973065'},
+                   {'fillStyle' : '#3cb878', 'text' : '92952427'},
+                   {'fillStyle' : '#000000', 'text' : 'Quay 2 lần', 'textFontSize' : 12, 'textFillStyle' : '#ffffff'},
+                   {'fillStyle' : '#a186be', 'text' : '2083651'},
+                   {'fillStyle' : '#fff200', 'text' : '327424047'},
+                   {'fillStyle' : '#00aef0', 'text' : '523995530'},
+                   {'fillStyle' : '#ffffff', 'text' : 'Quay lại', 'textFontSize' : 12},
+				   {'fillStyle' : '#ee1c24', 'text' : '435862719'},
+				   {'fillStyle' : '#3cb878', 'text' : '8007967'},
+				   {'fillStyle' : '#f6989d', 'text' : '338507574'},
+				   {'fillStyle' : '#00aef0', 'text' : '414566397'},
+				   {'fillStyle' : '#f26522', 'text' : '322723497'},
+				   {'fillStyle' : '#000000', 'text' : 'Quay 2 lần', 'textFontSize' : 12, 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#e70697', 'text' : '53277878'},
+                   {'fillStyle' : '#fff200', 'text' : '340121918'},
+                   {'fillStyle' : '#f6989d', 'text' : '220938799'},
+                   {'fillStyle' : '#ee1c24', 'text' : '582686173'},
+                   {'fillStyle' : '#3cb878', 'text' : '458360165'},
+                   {'fillStyle' : '#f26522', 'text' : '354393147'},
+                   {'fillStyle' : '#a186be', 'text' : '47364606'},
+                   {'fillStyle' : '#fff200', 'text' : '423771860'},
+                   {'fillStyle' : '#00aef0', 'text' : '453651222'},
+                   {'fillStyle' : '#ee1c24', 'text' : '45488650'},
+                   {'fillStyle' : '#f6989d', 'text' : '239791136'},
+                   {'fillStyle' : '#f26522', 'text' : '435865972'},
+                   {'fillStyle' : '#3cb878', 'text' : '66069277'},
+				   {'fillStyle' : '#000000', 'text' : 'Quay 2 lần', 'textFontSize' : 12, 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#a186be', 'text' : '504367157'},
+                   {'fillStyle' : '#fff200', 'text' : '464382820'},
+                   {'fillStyle' : '#00aef0', 'text' : '738588245'},
+				   {'fillStyle' : '#ffffff', 'text' : 'Quay lại', 'textFontSize' : 12},
+				   {'fillStyle' : '#ee1c24', 'text' : '7792843'},
+				   {'fillStyle' : '#3cb878', 'text' : '557648510'},
+				   {'fillStyle' : '#f6989d', 'text' : '468540857'},
+				   {'fillStyle' : '#00aef0', 'text' : '948265973'},
+				   {'fillStyle' : '#f26522', 'text' : '401937269'},
+				   {'fillStyle' : '#000000', 'text' : 'Quay 2 lần', 'textFontSize' : 12, 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#e70697', 'text' : '513643155'},
+                   {'fillStyle' : '#fff200', 'text' : '336501854'},
+                   {'fillStyle' : '#f6989d', 'text' : '363860991'},
+                   {'fillStyle' : '#ee1c24', 'text' : '445921066'},
+                   {'fillStyle' : '#3cb878', 'text' : '502176011'},
+                   {'fillStyle' : '#f26522', 'text' : '432497591'},
+                   {'fillStyle' : '#fff200', 'text' : '385004668'},
+				   {'fillStyle' : '#ffffff', 'text' : 'Quay lại', 'textFontSize' : 12}
+                ],
+                'animation' :           // Specify the animation to use.
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 10,    // Duration in seconds.
+                    'spins'    : 3,     // Default number of complete spins.
+                    'callbackFinished' : alertPrize,
+                    'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
+                    'soundTrigger'     : 'pin'        // Specify pins are to trigger the sound, the other option is 'segment'.
+                },
+                'pins' :				// Turn pins on.
+                {
+                    'number'     : 24,
+                    'fillStyle'  : 'silver',
+                    'outerRadius': 4,
+                }
+            });
+
+            // Loads the tick audio sound in to an audio object.
+            let audio = new Audio('tick.mp3');
+
+            // This function is called when the sound is to be played.
+            function playSound()
+            {
+                // Stop and rewind the sound if it already happens to be playing.
+                audio.pause();
+                audio.currentTime = 0;
+
+                // Play the sound.
+                audio.play();
+            }
+
+            // Vars used by the code in this page to do power controls.
+            let wheelPower    = 0;
+            let wheelSpinning = false;
+
+            // -------------------------------------------------------
+            // Function to handle the onClick on the power buttons.
+            // -------------------------------------------------------
+            function powerSelected(powerLevel)
+            {
+                // Ensure that power can't be changed while wheel is spinning.
+                if (wheelSpinning == false) {
+                    // Reset all to grey incase this is not the first time the user has selected the power.
+                    document.getElementById('pw1').className = "";
+                    document.getElementById('pw2').className = "";
+                    document.getElementById('pw3').className = "";
+
+                    // Now light up all cells below-and-including the one selected by changing the class.
+                    if (powerLevel >= 1) {
+                        document.getElementById('pw1').className = "pw1";
+                    }
+
+                    if (powerLevel >= 2) {
+                        document.getElementById('pw2').className = "pw2";
+                    }
+
+                    if (powerLevel >= 3) {
+                        document.getElementById('pw3').className = "pw3";
+                    }
+
+                    // Set wheelPower var used when spin button is clicked.
+                    wheelPower = powerLevel;
+
+                    // Light up the spin button by changing it's source image and adding a clickable class to it.
+                    document.getElementById('spin_button').src = "spin_on.png";
+                    document.getElementById('spin_button').className = "clickable";
+                }
+            }
+
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false) {
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    if (wheelPower == 1) {
+                        theWheel.animation.spins = 3;
+                    } else if (wheelPower == 2) {
+                        theWheel.animation.spins = 6;
+                    } else if (wheelPower == 3) {
+                        theWheel.animation.spins = 10;
+                    }
+
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "spin_off.png";
+                    document.getElementById('spin_button').className = "";
+
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    theWheel.startAnimation();
+
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+
+            // -------------------------------------------------------
+            // Function for reset button.
+            // -------------------------------------------------------
+            function resetWheel()
+            {
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+                theWheel.draw();                // Call draw to render changes to the wheel.
+
+                document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
+                document.getElementById('pw2').className = "";
+                document.getElementById('pw3').className = "";
+
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+            }
+
+            // -------------------------------------------------------
+            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+            // -------------------------------------------------------
+            function alertPrize(indicatedSegment)
+            {
+                // Just alert to the user what happened.
+                // In a real project probably want to do something more interesting than this with the result.
+                if (indicatedSegment.text == 'Quay lại') {
+                    alert('Quay thêm 1 lần nhé.');
+                } else if (indicatedSegment.text == 'Quay 2 lần') {
+                    alert('Quay lại 2 lần nhé!');
+                } else {
+                    alert("ID của người chiến thắng là " + indicatedSegment.text);
+                }
+            }
+        </script>
+    </body>
+</html>
