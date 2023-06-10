@@ -43,7 +43,8 @@ https://htv-drm-live-cdn.fptplay.net/CDN-FPT02/VTV9-HD-1080p/playlist.m3u8
 #EXTINF:0 tvg-id="vtv3hd"group-title="Kênh VTV" tvg-logo="https://i.ibb.co/87vc2Yr/VTV3-HD-BEARTV.png" tvg-chno="103" catchup="append" catchup-days="0.3" catchup-source="https://tshift.fptplay.net/dvr/vtv3hd_1500.stream/chunks_dvr_range-${start}-10800.m3u8",VTV3
 https://mziyw7t0yhliv.vcdn.cloud/live/vtv3/chunklist_2.m3u8
 
-
+#EXTINF:0 tvg-id="pnf1"group-title="Phineas and Ferb phần 1" tvg-logo="https://i.ibb.co/khkmQ4F/VTV2-HD-BEARTV.png" tvg-chno="2" catchup="append" catchup-days="0.3" catchup-source="https://tshift.fptplay.net/dvr/vtv2_2000.stream/chunks_dvr_range-${start}-10800.m3u8",Tập 1 Mùa 1 | Phineas and Ferb
+https://str1.vtube.to/hls/x5s46mxfnnyfa2sgapx4tjvineq66ahgadvbrrjn2onrjvi5nwgbyywnqo6a/index-v1-a1.m3u8
 
 
 #EXTINF:-1 tvg-id="vtc1" group-title="KÊNH VTC SD" tvg-logo="https://i.imgur.com/ZysrRla.png",VTC1 | THIẾT YẾU QUỐC GIA
